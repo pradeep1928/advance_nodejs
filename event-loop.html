@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Loop</title>
+  </head>
+  <body>
+    <div>
+      <h3>Task-Queue and Micro-Task-Queue</h3>
+    </div>
+
+    <div>
+      <button id="btn">Click Me</button>
+    </div>
+
+    <script>
+      function scheduleWork() {
+        Promise.resolve().then(() => console.log("M1"));
+        Promise.resolve().then(() => console.log("M2"));
+
+        setTimeout(() => console.log("T1"), 0);
+
+        setTimeout(() => {
+          Promise.resolve().then(() => console.log("M3"));
+          Promise.resolve().then(() => console.log("M4"));
+          Promise.resolve().then(() => console.log("M5"));
+          Promise.resolve().then(() => Promise.resolve().then(() => console.log("M6")) );
+        }, 0);
+
+        setTimeout(() => console.log("T2"), 0);
+        setTimeout(() => console.log("T3"), 0);
+        console.log('simple console')
+      }
+
+      const btn = document.getElementById('btn');
+      btn.addEventListener('click', scheduleWork)
+    </script>
+  </body>
+</html>
