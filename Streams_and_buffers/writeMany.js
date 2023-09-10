@@ -65,7 +65,7 @@
 
 
 
-// *** ex - 5 using stream with drain ***  
+// *** ex - 5 using stream with drain best method to use***  
 const fs = require('fs/promises');
 // * Execution time = 700 ms
 // * cpu process = 0.5%
@@ -77,12 +77,13 @@ const fs = require('fs/promises');
     console.log('--- High Watermark --- ', stream.writableHighWaterMark);
 
     let i = 0
+    const bigData = 100000
     const writeManyFunc = () => {
-        while (i < 100000) {
+        while (i < bigData) {
             const buff = Buffer.from(` ${i} `, 'utf-8')
 
             // This is our last write
-            if (i == 99999) {
+            if (i == bigData - 1) {
                 return stream.end(buff);
             }
 
