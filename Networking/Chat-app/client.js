@@ -38,8 +38,11 @@ const moveCursor = (dx, dy) => {
     })
 }
 
-/* The code is creating a TCP socket connection to a server running on the local machine at IP address
-'127.0.0.1' and port number 3001. */
+let id;
+
+/* The code snippet creates a TCP socket connection to a server with the specified host and port. Once
+the connection is established, it logs a message to the console indicating that it is connected to
+the server. */
 const socket = net.createConnection({ host: '127.0.0.1', port: 3001 }, async () => {
     console.log('Connected to the server.');
 
@@ -49,9 +52,8 @@ const socket = net.createConnection({ host: '127.0.0.1', port: 3001 }, async () 
         await moveCursor(0, -1);
         // Clear the entire line that the cursor is in.
         await clearLine(0);
-        socket.write(message)
+        socket.write(`${id}-message-${message}`)
     }
-
     ask()
 
     socket.on('data', async (data) => {
@@ -61,10 +63,17 @@ const socket = net.createConnection({ host: '127.0.0.1', port: 3001 }, async () 
         await moveCursor(0, -1);
         // Clear the entire line that the cursor is in.
         await clearLine(0);
-        console.log(data.toString('utf-8'))
+
+        if (data.toString('utf-8').substring(0, 3) === 'id-') {
+            // When we are getting the id 
+            id = data.toString('utf-8').substring(3)
+            console.log(`Your id is: ${id}\n`)
+        } else {
+            // When we are getting a message 
+            console.log(data.toString('utf-8'))
+        }
         ask()
     })
-
 });
 
 
