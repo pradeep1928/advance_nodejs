@@ -1,2 +1,0 @@
-This is from read stream.
-This is end of read stream.
