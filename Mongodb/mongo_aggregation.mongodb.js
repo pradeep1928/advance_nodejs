@@ -121,7 +121,7 @@ db.getCollection('users')
       // {
       //   $group: {
       //     _id: null,
-      //     agerageNumberOfTags: {
+      //     averageNumberOfTags: {
       //       $avg: "$numberOfTags"
       //     }
       //   }
@@ -159,20 +159,99 @@ db.getCollection('users')
       //  -------------------- *** ----------------------
 
       // How many users have a phone number starting with '+1 (940)'
-      {
-        $match: {
-          "company.phone": /^\+1 \(940\)/
-        }
-      }, 
-      {
-        $count: "usersWithPhoneStartingWith940"
-      }
+      // {
+      //   $match: {
+      //     "company.phone": /^\+1 \(940\)/
+      //   }
+      // }, 
+      // {
+      //   $count: "usersWithPhoneStartingWith940"
+      // },
 
+      //  -------------------- *** ----------------------
 
+      // Who has registered most recently?
+      // {
+      //   $sort: {
+      //     registered: -1
+      //   }
+      // }, 
+      // {
+      //   $limit: 4
+      // },
+      // {
+      //   $project: {
+      //     _id: 0,
+      //     name: 1,
+      //     registered: 1,
+      //     age: 1
+      //   }
+      // }
 
+      //  -------------------- *** ----------------------
 
+      // Categorize users by thier favorite fruit
+      // {
+      //   $group: {
+      //     _id: "$favoriteFruit",
+      //     count: {
+      //       $sum: 1
+      //     },
+      //     users: {
+      //       $push: "$name"
+      //     }
+      //   }
+      // },
+      // {
+      //   $addFields: {
+      //     userCount: {
+      //       $size: "$users"
+      //     }
+      //   }
+      // }
 
+      //  -------------------- *** ----------------------
 
+      // How many users have 'ad' as the second tag in their list of tags?
+      // {
+      //   $match: {
+      //     "tags.1": "ad"
+      //   }
+      // },
+      // {
+      //   $count: "usersWithAdAsSecondTag"
+      // }
+
+      //  -------------------- *** ----------------------
+
+      // Find users who have both 'enim' and 'id' as thier tags
+      // {
+      //   $match: {
+      //     tags: { $all: ["enim", "id"]}
+      //   }
+      // }, 
+
+      //  -------------------- *** ----------------------
+
+      // List all companies located in the "USA" with their corresponding user count 
+      // {
+      //   $match: {
+      //     "company.location.country": "USA"
+      //   }
+      // }, 
+      // {
+      //   $group: {
+      //     _id: "$company.title",
+      //     userCount: {
+      //       $sum: 1
+      //     }
+      //   }
+      // }
+
+      //  -------------------- *** ----------------------    
 
     ]
   )
+
+
+  
