@@ -163,3 +163,59 @@ const rotateString = (str, n, side) => {
 }
 
 console.log('rotateString ==> ', rotateString('pradeep', 2, 'left'))
+
+
+
+// =================================== *** ============================================
+// Q6. Debounce – How to Delay a Function in JavaScript (JS ES6 Example)
+// Debouncing is a technique that delays the execution of a function until a certain period of inactivity has passed. It ensures that the function is only triggered after a specified interval of calmness, ignoring rapid consecutive events within that interval.
+function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+}
+function saveInput() {
+    console.log('Saving data');
+}
+const processChange = debounce(() => saveInput());
+
+
+// Register the first click and ignore the other
+function debounce_leading(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+        if (!timer) {
+            func.apply(this, args);
+        }
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            timer = undefined;
+        }, timeout);
+    };
+}
+
+
+// =================================== *** ============================================
+// Q6. Throttling 
+// Throttling is a technique used in JavaScript to ensure that a function is not called too frequently. This is useful for optimizing performance in scenarios where an event may be fired multiple times in quick succession, such as window resizing, scrolling, or mouse movements.
+// Throttling is a technique that limits the frequency of function invocations by enforcing a maximum execution rate. It ensures that the function is called at a specific interval, regardless of how frequently the event occurs.
+const throttle = (context, func, limit) => {
+    let lastFunc;
+    let lastRan;
+    return (...args) => {
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(function() {
+          if (Date.now() - lastRan >= limit) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          }
+        }, limit - (Date.now() - lastRan));
+      }
+    };
+  };

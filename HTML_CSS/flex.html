@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .parent {
+            display: flex;
+            flex-wrap: wrap;
+            width: 300px;  /* Set width of the parent div */
+            height: 300px; /* Set height of the parent div */
+            background-color: lightgray; /* Optional: to visualize the parent div */
+        }
+        .corner {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+        }
+
+        .top-left { 
+            order: 1;
+            align-self: flex-start
+        }
+
+        .top-right {
+            order: 2;
+            align-self: flex-start;
+            margin-left: auto;
+        }
+
+        .bottom-left {
+            order: 3;
+            align-self: flex-end;
+        }
+
+        .bottom-right {
+            order: 4;
+            align-self: flex-end;
+            margin-left: 100%;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+        <!-- <div class="corner center"></div> -->
+    </div>
+</body>
+</html>
