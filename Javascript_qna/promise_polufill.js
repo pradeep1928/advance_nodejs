@@ -10,6 +10,10 @@ const promise1 = new Promise((resolve, reject) => {
   
   const promise3 = 8;
 
+  const promise4 = Promise.reject('this is failed promise')
+
+
+// Promise.all polifill 
 function myPromiseAll (promiseArr) {
     return new Promise((resolve, reject) => {
         let result = []
@@ -28,15 +32,14 @@ function myPromiseAll (promiseArr) {
     })
 }
 
-const promiseAll = myPromiseAll([promise1, promise2, promise3])
+const promiseAll = myPromiseAll([promise1, promise2, promise3, promise4])
 
 promiseAll.then((data) => {
     console.log(data)
 }).catch(err => console.log(err))
 
 
-//  Promise.allSettled
-
+//  Promise.allSettled polyfill
 const myAllSettled = (promises) => {
     return new Promise((resolve) => {
       const result = [];
@@ -59,3 +62,9 @@ const myAllSettled = (promises) => {
     });
   };
   
+
+const promiseAllSetteled = myAllSettled([promise1, promise2, promise3, promise4])
+
+promiseAllSetteled.then((data) => {
+    console.log(data)
+}).catch(err => console.log(err))
