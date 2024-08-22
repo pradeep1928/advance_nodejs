@@ -1,7 +1,7 @@
 
 
 function isPalindrom(str) {
-    let re = /[^A-Za-z0-9_]/g
+    let re = /[^A-Za-z0-9_]/g  
     str = str.toLowerCase().replace(re, '')
     let len = str.length
     for(let i = 0; i < len / 2; i++) {
@@ -18,9 +18,9 @@ function canFormPalindrome (str) {
     const len = str.length;
     let palStrArr = []
     for (let start = 0; start < len; start++) {
-        for (let end = start + 2; end <= len; end++) {
+        for (let end = start + 3; end <= len; end++) {
             const substring = str.slice(start, end);
-            // console.log(substring)
+            // console.log('substring', substring)
             if (isPalindrom(substring)) {
                 palStrArr.push(substring)
             }
@@ -35,17 +35,19 @@ function canFormPalindrome (str) {
     return maxpal
 }
 
-function checkPalindrom(str) {
+function checkPalindrom1(str) {
     if (isPalindrom(str)){
-        return str
+        console.log('is a palindrome')
+        return str.replace(/\s+/g, '')
     } else if (canFormPalindrome(str)) {
-        console.log(canFormPalindrome(str))
+        console.log('can form a palindrome')
+        return canFormPalindrome(str)
     } else {
-        console.log('not a palindrome and can not form a palindrome')
+        return 'not a palindrome and can not form a palindrome'
     }
 }
 
-console.log("checkPalindrom ==> ", checkPalindrom('pradeeppd'))
+console.log("checkPalindrom ==> ", checkPalindrom1('race car'))
 
 // ------------------------- *** --------------------------------
 
