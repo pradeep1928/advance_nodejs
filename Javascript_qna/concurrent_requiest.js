@@ -41,8 +41,45 @@ async function upgradeAll (server, successThreshold) {
 }
 
 
-const servers = [1, 2, 3, 4, 5, 6, 7, 8];
+// const servers = [1, 2, 3, 4, 5, 6, 7, 8];
+// (async () => {
+//     const result = await upgradeAll(servers, 4)
+//     console.log('result ==> ', result)
+// })()
+
+
+
+
+// Simulated async function to upgrade a server by ID
+
+// Main function to upgrade servers until the success threshold is reached
+async function upgradeAll2(servers, successThreshold) {
+    let successCount = 0;
+
+    for (let serverId of servers) {
+        try {
+            await upgradeServerById(serverId);
+            successCount++;
+            console.log(`Server ${serverId} upgraded successfully`);
+
+            // Stop if the threshold is reached
+            if (successCount >= successThreshold) {
+                console.log(`Success threshold of ${successThreshold} reached. Stopping further upgrades.`);
+                return 1;
+            }
+        } catch (error) {
+            console.log(`Failed to upgrade server ${serverId}`);
+        }
+    }
+
+    // If we exit the loop without reaching the threshold
+    console.log(`Upgrade process completed with ${successCount} successful upgrades.`);
+    return successCount >= successThreshold ? 1 : 0;
+}
+
+// Test case
+let servers = [1, 2, 3, 4, 5, 6, 7, 8];
 (async () => {
-    const result = await upgradeAll(servers, 4)
-    console.log('result ==> ', result)
-})()
+    const result = await upgradeAll2(servers, 4);
+    console.log('Final result ==> ', result);
+})();
