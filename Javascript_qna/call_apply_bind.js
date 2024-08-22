@@ -13,9 +13,9 @@ var pokemon = {
     console.log(this.getPokeName() + ' loves ' + snack + ' and ' + hobby);
   };
 
-//   var logPokemon = pokemonName.bind(pokemon); // creates new object and binds pokemon. 'this' of pokemon === pokemon now
+  var logPokemon = pokemonName.bind(pokemon); // creates new object and binds pokemon. 'this' of pokemon === pokemon now
 
-//   logPokemon('sushi', 'algorithms'); // Pika Chu  loves sushi and algorithms
+  logPokemon('sushi', 'algorithms'); // Pika Chu  loves sushi and algorithms
 
 
 
