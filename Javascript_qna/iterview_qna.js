@@ -167,6 +167,8 @@ console.log('rotateString ==> ', rotateString('pradeep', 2, 'left'))
 
 
 // =================================== *** ============================================
+
+
 // Q6. Debounce – How to Delay a Function in JavaScript (JS ES6 Example)
 // Debouncing is a technique that delays the execution of a function until a certain period of inactivity has passed. It ensures that the function is only triggered after a specified interval of calmness, ignoring rapid consecutive events within that interval.
 function debounce(func, timeout = 300) {
@@ -198,6 +200,7 @@ function debounce_leading(func, timeout = 300) {
 
 
 // =================================== *** ============================================
+
 // Q6. Throttling 
 // Throttling is a technique used in JavaScript to ensure that a function is not called too frequently. This is useful for optimizing performance in scenarios where an event may be fired multiple times in quick succession, such as window resizing, scrolling, or mouse movements.
 // Throttling is a technique that limits the frequency of function invocations by enforcing a maximum execution rate. It ensures that the function is called at a specific interval, regardless of how frequently the event occurs.
@@ -219,3 +222,77 @@ const throttle = (context, func, limit) => {
       }
     };
   };
+
+
+  // =================================== *** ============================================
+
+
+// Run the given function only once 
+function once(func, context) {
+    let ran;
+
+    return function () {
+        if (func) {
+            ran = func.apply((context || this, arguments))
+            func = null;
+        }
+        return ran;
+    }
+}
+
+// let hello = once(() => console.log("hello world"));
+
+// hello()
+// hello()
+// hello()
+
+
+// =================================== *** ============================================
+
+// Merge Object with same key 
+var originalArray = [{
+    id: 1,
+    elements: [1, 2]
+  },
+  {
+    id: 1,
+    elements: [3, 4]
+  },
+  {
+    id: 5,
+    elements: ['a', 'b']
+  },
+  {
+    id: 5,
+    elements: ['c', 'd']
+  }, {
+    id: 27,
+    elements: []
+  }]
+  
+  let mapedArr = originalArray.reduce((obj, item) => {
+  obj[item.id] ? obj[item.id].elements.push(...item.elements) : (obj[item.id] = {...item});
+  return obj
+  },{})
+  
+  console.log(Object.values(mapedArr))
+  
+  
+  // =================================== *** ============================================
+
+// Print 1 to 5 each second and then stop 
+function print() {
+    let i = 1
+    let time = setInterval(() => {
+        console.log(i)
+        i++
+        if (i >= 6) {
+            clearTimeout(time)      // i + 1
+        }
+    }, 1000)
+}
+
+// print()
+  
+  
+  
