@@ -83,12 +83,12 @@ function checkPalindrom(str) {
     }
 
     if (palindrome.length != str.length) {
-        return 'given string can not be converted to palindrom with all characters'
+        return 'given string can not be converted to palindrom'
     }
 }
 
 
-// console.log(checkPalindrom('pradeeppd'))   
+console.log(checkPalindrom('abcd'))   
 
 
 

@@ -9,7 +9,6 @@ Array.prototype.myforEach = function (callback) {
 }
 
 // Polyfill of map() method.
-
 Array.prototype.myMap = function (callback) {
     let output = []
     for (let i = 0; i < this.length; i++) {
@@ -17,6 +16,17 @@ Array.prototype.myMap = function (callback) {
     }
     return output
 }
+
+Array.prototype.myMap2 = function (callback, thisArg) {
+    let result = [];
+    for (let i = 0; i < this.length; i++) {
+        let currentValue = this[i];
+        let mappedValue = callback.call(thisArg, currentValue, i, this);
+        result.push(mappedValue);
+    }
+    return result;
+}
+
 
 // console.log('myMap ==> ', arr.myMap((val) => val * 2))
 
